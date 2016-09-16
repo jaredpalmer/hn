@@ -1,8 +1,8 @@
 {
-  "name": "news",
+  "name": "hn",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://jaredpalmer.github.io/news",
+  "homepage": "https://jaredpalmer.github.io/hn",
   "devDependencies": {
     "react-scripts": "0.4.1"
   },
