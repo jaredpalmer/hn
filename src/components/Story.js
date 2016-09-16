@@ -1,5 +1,5 @@
 import React from 'react';
-import {css, withStyles} from '../withStyles'
+import { css, withStyles } from '../withStyles'
 
 function Story({ item, styles }) {
   return (
@@ -10,7 +10,7 @@ function Story({ item, styles }) {
             ({item.url.replace('https://', '').replace('http://', '').replace('www.', '').split('/')[0]})
           </small>}
       </a>
-      <div {...css(styles.meta)}>
+      <div {...css(styles.small)}>
         {item.score} points ·&nbsp;by {item.by} ·&nbsp;
         <a href={`https://news.ycombinator.com/item?id=${item.id}`} {...css(styles.comments)}>
           {item.descendants} comments
@@ -20,16 +20,21 @@ function Story({ item, styles }) {
   );
 }
 
-export default withStyles(({ color, unit }) => ({
+export default withStyles(({ color, unit, font, breakpoint }) => ({
   story: {
-    padding: unit(1),
+    padding: unit(.75),
+    paddingLeft: 0,
     marginLeft: unit(2.5),
-    fontSize: unit(1)
+
+    [breakpoint.md]: {
+      padding: unit(1)
+    }
   },
 
   title: {
     textDecoration: 'none',
-    fontWeight: 700,
+    fontWeight: 600,
+    fontSize: unit(1),
     color: color.textDark,
     lineHeight: 1.2,
     marginBottom: unit(.25),
@@ -37,14 +42,8 @@ export default withStyles(({ color, unit }) => ({
   },
 
   small: {
-    fontSize: unit(.85),
-    color: color.textLight,
-    fontWeight: 'normal'
-  },
-
-  meta: {
-    fontSize: unit(.85),
-    color: color.textLightest
+    color: color.textLightest,
+    ...font.small
   },
 
   comments: {

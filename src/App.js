@@ -82,22 +82,25 @@ class App extends Component {
     return (
       <div>
         <Nav />
-        {this.state.isLoading && <div>Loading....</div>}
         <ol {...css(styles.stories)}>
-        {!this.state.isLoading &&
-          this.state.data.map((item, i) => <Story key={item.id} item={item}/>)}
+          {this.state.data.map((item, i) => <Story key={item.id} item={item}/>)}
         </ol>
+        {this.state.paging &&
+          <div>Loading....</div>}
       </div>
     );
   }
 }
 
-export default withStyles(({ color, unit }) => ({
+export default withStyles(({ color, unit, breakpoint }) => ({
   stories: {
-    background: color.white,
+    background: '#f8f8f9',
     listStyle: 'decimal',
-    paddingTop: unit(3),
-    '@media only screen and (min-width: 916px)': {
+    color: color.textLighter,
+    paddingTop: unit(4),
+    [breakpoint.lg]: {
+      color: color.textLightest,
+      background: color.white,
       maxWidth: 800,
       marginLeft: 116,
     },
